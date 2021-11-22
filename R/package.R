@@ -1,7 +1,5 @@
 #' @import htmltools
-#' @import htmltools
-#' @import htmltools
 #' @docType package
-#' @name shinyWidgets
+#' @name pickerInputOrdered
 NULL
 

@@ -5,10 +5,21 @@ library(htmltools)
 shinyApp(
   ui = fluidPage(
     title = "elo",
-    pickerInputNew(inputId = "a", label = "toggle", choices = c("a", "b", "c"), selected = "a", multiple = TRUE),
-    verbatimTextOutput("out")
+    fluidRow(
+      column(
+        6,
+        div(
+          pickerInputNew(inputId = "a", label = "toggle", choices = c("a", "b", "c"), selected = "a", multiple = TRUE),
+          br(),
+          br(),
+          br(),
+          br(),
+          verbatimTextOutput("outa")
+        )
+      )
+    )
   ),
   server = function(input, output, server) {
-    output$out <- renderPrint(input$a)
+    output$outa <- renderPrint(input$a)
   }
 )

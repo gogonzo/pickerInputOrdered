@@ -1,20 +1,16 @@
 // picker input binding
 var pickerInputBinding = new Shiny.InputBinding();
+
 $.extend(pickerInputBinding, {
+  choices: [],
   find: function find(scope) {
-    console.log("find");
     return $(scope).find(".selectpicker");
   },
   getId: function getId(el) {
     return el.id;
   },
   getValue: function getValue(el) {
-    var choices = [];
-    $(el).on("changed.bs.select.pickerInput", function(e, clickedIndex, isSelected, previousValue) {
-      var selected = ($(this).selectpicker('val') || []);
-      choices.push(...selected);
-    });
-    return "choices"
+    return choices;
   },
   setValue: function setValue(el, value) {
     $(el).val(value);
@@ -22,7 +18,6 @@ $.extend(pickerInputBinding, {
   },
   getState: function getState(el) {
     // Store options in an array of objects, each with with value and label
-    console.log("getState");
     var options = new Array(el.length);
     for (var i = 0; i < el.length; i++) {
       options[i] = { value: el[i].value, label: el[i].label };
@@ -77,13 +72,18 @@ $.extend(pickerInputBinding, {
     $(el).selectpicker("refresh");
     $(el).trigger("change");
   },
-  subscribe: function subscribe(el, callback) {
-    $(el).data("callback", callback);
-    var choices = [];
+  subscribe: function subscribe(el, callback) {    $(el).data("callback", callback);
     $(el).on("changed.bs.select.pickerInput", function(e, clickedIndex, isSelected, previousValue) {
       var selected = ($(this).selectpicker('val') || []);
-      choices.push(...selected);
-      console.log(choices);
+      let newvals = selected.filter(x => !choices.includes(x));
+      let removed = choices.filter(x => !selected.includes(x));
+      choices.push(...newvals);
+      removed.forEach(function(elem) {
+        const index = choices.indexOf(elem);
+        if (index > -1) {
+          choices.splice(index, 1);
+        }
+      });
       callback();
     });
   },
@@ -92,6 +92,7 @@ $.extend(pickerInputBinding, {
   },
   initialize: function initialize(el) {
     $(el).selectpicker();
+    choices = $(el).val();
     $(el).on("shown.bs.select", function(e) {
       Shiny.setInputValue(el.id + "_open", true);
     });
