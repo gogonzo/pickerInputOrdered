@@ -1,0 +1,9 @@
+{
+    "path" : "~/nest/pickerInputOrdered/inst/www",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

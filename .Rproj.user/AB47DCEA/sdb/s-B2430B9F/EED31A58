@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: pickerInputOrdered\nType: Package\nTitle: What the Package Does (Title Case)\nVersion: 0.1.0\nAuthor: Who wrote it\nMaintainer: The package maintainer <yourself@somewhere.net>\nDescription: More about what it does (maybe more than one line)\n    Use four spaces when indenting paragraphs within the Description.\nLicense: What license is it under?\nRoxygen: list(markdown = TRUE)\nDepends:\n    R (>= 3.1.0)\nImports:\n    bslib,\n    sass,\n    shiny (>= 0.14),\n    htmltools,\n    jsonlite,\n    grDevices\nSuggests: shinydashboard,\n    testthat,\n    covr,\n    shinydashboardPlus (>= 2.0.0),\n    bs4Dash,\n    argonR,\n    argonDash,\n    tablerDash,\n    ggplot2,\n    DT,\n    scales\nEncoding: UTF-8\nLazyData: true\nRoxygenNote: 7.1.2\n",
+    "created" : 1637338796382.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2358681548",
+    "id" : "EED31A58",
+    "lastKnownWriteTime" : 1637339275,
+    "last_content_update" : 1637339275,
+    "path" : "~/nest/pickerInputOrdered/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+        "marks" : "<:0,0\n>:0,0"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}

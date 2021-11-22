@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "#' @import htmltools\n#' @import htmltools\n#' @import htmltools\n#' @docType package\n#' @name shinyWidgets\nNULL\n\n",
+    "created" : 1637339188235.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3157359778",
+    "id" : "950CD8C6",
+    "lastKnownWriteTime" : 1637339280,
+    "last_content_update" : 1637339280369,
+    "path" : "~/nest/pickerInputOrdered/R/package.R",
+    "project_path" : "R/package.R",
+    "properties" : {
+        "marks" : "<:0,0\n>:0,0",
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

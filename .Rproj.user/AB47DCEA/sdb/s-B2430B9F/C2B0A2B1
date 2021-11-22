@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "// picker input binding\nvar pickerInputBinding = new Shiny.InputBinding();\n$.extend(pickerInputBinding, {\n  find: function find(scope) {\n    console.log(\"find\");\n    return $(scope).find(\".selectpicker\");\n  },\n  getId: function getId(el) {\n    return el.id;\n  },\n  getValue: function getValue(el) {\n    var choices = [];\n    $(el).on(\"changed.bs.select.pickerInput\", function(e, clickedIndex, isSelected, previousValue) {\n      var selected = ($(this).selectpicker('val') || []);\n      choices.push(...selected);\n    });\n    return \"choices\"\n  },\n  setValue: function setValue(el, value) {\n    $(el).val(value);\n    $(el).selectpicker(\"refresh\");\n  },\n  getState: function getState(el) {\n    // Store options in an array of objects, each with with value and label\n    console.log(\"getState\");\n    var options = new Array(el.length);\n    for (var i = 0; i < el.length; i++) {\n      options[i] = { value: el[i].value, label: el[i].label };\n    }\n\n    return {\n      label: $(el)\n        .parent()\n        .find('label[for=\"' + Shiny.$escape(el.id) + '\"]')\n        .text(),\n      value: this.getValue(el),\n      options: options\n    };\n  },\n  receiveMessage: function receiveMessage(el, data) {\n    var $el = $(el);\n\n    if (data.hasOwnProperty(\"options\")) {\n      var callback = $(el).data(\"callback\");\n      $(el).selectpicker(\"destroy\");\n      if (data.clearOptions) {\n        var shinyInputBinding = $(el).data(\"shinyInputBinding\");\n        $(el).removeData();\n        $(el).data(\"callback\", callback);\n        $(el).data(\"shinyInputBinding\", shinyInputBinding);\n      }\n      $(el).data(data.options);\n      $(el).selectpicker();\n      $(el).on(\"changed.bs.select.pickerInput\", function(event) {\n        callback();\n      });\n    }\n\n    // This will replace all the choices\n    if (data.hasOwnProperty(\"choices\")) {\n      // Clear existing choices and add each new one\n      $el.empty().append(data.choices);\n      $(el).selectpicker(\"refresh\");\n    }\n\n    if (data.hasOwnProperty(\"value\")) {\n      this.setValue(el, data.value);\n    }\n\n    if (data.hasOwnProperty(\"label\"))\n      $(el)\n        .parent()\n        .parent()\n        .find('label[for=\"' + Shiny.$escape(el.id) + '\"]')\n        .text(data.label);\n\n    $(el).selectpicker(\"refresh\");\n    $(el).trigger(\"change\");\n  },\n  subscribe: function subscribe(el, callback) {\n    $(el).data(\"callback\", callback);\n    var choices = [];\n    $(el).on(\"changed.bs.select.pickerInput\", function(e, clickedIndex, isSelected, previousValue) {\n      var selected = ($(this).selectpicker('val') || []);\n      choices.push(...selected);\n      console.log(choices);\n      callback();\n    });\n  },\n  unsubscribe: function unsubscribe(el) {\n    $(el).off(\".pickerInput\");\n  },\n  initialize: function initialize(el) {\n    $(el).selectpicker();\n    $(el).on(\"shown.bs.select\", function(e) {\n      Shiny.setInputValue(el.id + \"_open\", true);\n    });\n    $(el).on(\"hidden.bs.select\", function(e) {\n      Shiny.setInputValue(el.id + \"_open\", false);\n    });\n    // TEMPORARY FIX FOR SHINY V1.6.0\n    $(document).off(\"focusout.dropdown.data-api\");\n  }\n});\nShiny.inputBindings.register(pickerInputBinding, \"shinyWidgets.pickerInput\");\n\n",
+    "created" : 1637340303409.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1099385910",
+    "id" : "C2B0A2B1",
+    "lastKnownWriteTime" : 1637568294,
+    "last_content_update" : 1637568294988,
+    "path" : "~/nest/pickerInputOrdered/inst/www/picker-bindings.js",
+    "project_path" : "inst/www/picker-bindings.js",
+    "properties" : {
+        "marks" : "<:11,0\n>:15,6"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "js"
+}
