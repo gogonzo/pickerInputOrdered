@@ -51,12 +51,8 @@ pickerInputNew <- function(inputId,
     singleton(
       tags$head(
         tags$script(src = "https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"),
-        # tags$script(src = "https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"),
         tags$script(src = "wwwBoostrapSelect/picker-bindings.js"),
         tags$link(rel = "stylesheet", type="text/css", href = "https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css")
-        # tags$script(src="wwwBoostrapSelect/js/bootstrap-select.min.js"),
-        # tags$script(src=""),
-        # tags$link(rel="stylesheet", type="text/css", href="wwwBoostrapSelect/css/bootstrap-select.min.css")
       )
     ),
     # input

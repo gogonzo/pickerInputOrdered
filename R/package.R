@@ -1,5 +1,5 @@
-#' @import htmltools
 #' @docType package
 #' @name pickerInputOrdered
+#' @import htmltools
 NULL
 

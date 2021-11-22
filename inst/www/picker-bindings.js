@@ -1,6 +1,5 @@
 // picker input binding
 var pickerInputBinding = new Shiny.InputBinding();
-
 $.extend(pickerInputBinding, {
   choices: [],
   find: function find(scope) {

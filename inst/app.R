@@ -1,6 +1,5 @@
-devtools::load_all()
 library(shiny)
-library(htmltools)
+library(pickerInputOrdered)
 
 shinyApp(
   ui = fluidPage(
